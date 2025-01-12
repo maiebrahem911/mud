@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حافظ مؤتة - حافظ مؤتة ومدّكر مؤتة</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-size: 16px;
+        }
+
+        nav {
+            background-color: #004d40;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+        }
+
+        nav .back-button {
+            position: absolute;
+           align-items: center;
+           text-decoration: none;
+
+        left: 20px;
+        color:#fff;
+        font-size: 2rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        margin: 0;
+        }
+
+        nav .back-button:hover {
+            color: #ffc107;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #fff;
+            text-align: center;
+            flex: 1;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 300px; /* العرض الافتراضي */
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .box:nth-child(1) {
+            background-color: #fffbea;
+            border-top: 5px solid #ffc107;
+        }
+
+        .box:nth-child(2) {
+            background-color: #f0fff4;
+            border-top: 5px solid #4caf50;
+        }
+
+        .box img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .box h2 {
+            color: #004d40;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .box p {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .box a {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #004d40;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .box a:hover {
+            background-color: #00796b;
+        }
+
+        .quote-container {
+            margin: 1rem auto;
+            padding: 1rem;
+            max-width: 600px; 
+            background: linear-gradient(135deg, #004d40, #ffc107);
+            color: #fff;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.5em;
+            line-height: 1.8;
+            font-style: italic;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 80%; /* البوكس يأخذ 80% من العرض */
+                margin: 0 auto; /* توسيط البوكس */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="back-button">
+            &larr; <!-- السهم فقط -->
+        </a>
+        <h1>مرحباً بكم في المشاريع القرآنية في جامعة مؤتة</h1>
+        <span style="width: 3rem;"></span> <!-- مساحة فارغة لضمان التوازن -->
+    </nav>
+
+    <div class="container">
+        <div class="box">
+            <img src="image/426479299_1203605393938522_5601331204472012894_n.jpg" alt="صورة مشروع حافظ مؤتة">
+            <h2> مشروع حافظ مؤتة</h2>
+            <p>مشروع يهدف لتخريج حفظة متميزين لكتاب الله</p>
+            <a target="_blank" href="hafez.html">استكشاف المشروع</a>
+        </div>
+        <div class="box">
+            <img src="image/247156559_215997947284102_8246749222777807758_n.jpg" alt="صورة مشروع مدّكر مؤتة">
+            <h2> مشروع مدّكر مؤتة</h2>
+            <p>مشروع يركز على التفسير والتدبر في آيات القرآن الكريم</p>
+            <a target="_blank" href="mud.html">استكشاف المشروع</a>
+        </div>
+    </div>
+
+    <div class="quote-container" id="quote">جاري تحميل الاقتباس...</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const quotes = [
+                "راجع القرآن...لا تنسه امامك حفل تكريم يوم القيامة",
+                "لا تحزن لبطء حفظك يكفيك انك ظفرت بوقت اطول بصحبة القرآن",
+                "لا بأس بالكثير من التعب فغداً سنسرده في جلسة واحدة",
+                "تبقى كل الألقاب عادية حتى تسمى بحافظ القرآن",
+                "ولما غلبنا التكاسل تذكرنا أنه كتاب عزيز فقمنا",
+                "على قدر طول المكث مع القرآن يكون حجم نعيم القلب",
+                "يا حافظ القرآن تاجك يجهز في السماء",
+                "من رافق القرآن تهنّى",
+            ];
+
+            function getRandomQuote() {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                return quotes[randomIndex];
+            }
+
+            document.getElementById('quote').innerText = getRandomQuote();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta name="viewport" content="width=device-width, virtual-scale=1" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon -->
+<link rel="icon" href="images.jpg" type="image/x-icon">
+    
+<!-- Web App Manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" href="images.jpg">
+
+<!-- Meta Tags for Mobile -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#004d40">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const messages = [
+                "مرحبًا بكم في مشروع حافظ مؤتة!",
+                "هدفنا هو تعليم وتحفيظ القرآن الكريم.",
+                "شارك معنا في مسيرتنا المباركة!"
+            ];
+            let index = 0;
+        
+            setInterval(() => {
+                welcomeMessage.textContent = messages[index];
+                index = (index + 1) % messages.length;
+            }, 3000);
+        });
+
+        function changeArrowColor() {
+            var arrow = document.querySelector('.back-arrow');
+            arrow.style.color = arrow.style.color === 'yellow' ? 'black' : 'yellow'; // Toggle color
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9d108;
+        }
+        header {
+            background-color: #a99605;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            background-color: rgb(255, 254, 251);
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(244, 224, 4, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4d7d04;
+            color: rgb(8, 7, 7);
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #b19203;
+        }
+        img {
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: rgb(246, 236, 236);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 30px;
+        }
+
+        .back-arrow {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            font-size: 2rem;
+            color: black;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            transform: translateY(-50%);
+        }
+
+        .back-arrow:hover {
+            color: yellow; /* تغيير اللون عند التمرير */
+        }
+
+        /* التصميم الأساسي للأجهزة الكبيرة */
+        body {
+          font-size: 16px;
+          margin: 0;
+        }
+
+        /* التصميم الخاص بالشاشات الصغيرة */
+        @media (max-width: 768px) {
+          body {
+            font-size: 14px;
+            margin: 10px;
+          }
+
+          .container {
+            flex-direction: column; /* تغيير الترتيب لتناسب الهاتف */
+          }
+        }
+        .container {
+          display: flex;
+          flex-wrap: wrap; /* يجعل العناصر تلتف إذا لم يكن هناك مساحة */
+          gap: 10px;
+        }
+
+        .item {
+          flex: 1 1 calc(50% - 10px); /* 50% من العرض مع مراعاة الفراغات */
+        }
+
+        @media (max-width: 768px) {
+          .item {
+            flex: 1 1 100%; /* جعل العناصر تأخذ العرض الكامل على الهواتف */
+          }
+        }
+
+        .container {
+          width: 90%; /* بدلًا من تحديد العرض بوحدة ثابتة مثل px */
+          margin: 0 auto;
+        }
+
+        video {
+          width: 100%;
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+          video {
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        /* إطار يشبه الهاتف */
+        .phone-frame {
+          width: 100%;
+          max-width: 400px; /* عرض الهاتف */
+          aspect-ratio: 9 / 19.5; /* نسبة عرض إلى ارتفاع الهاتف */
+          background: #000; /* لون الإطار */
+          border-radius: 30px; /* حواف مستديرة للإطار */
+          padding: 15px; /* مسافة داخلية */
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* ظل للإطار */
+          margin: 20px auto; /* توسيط الهاتف في الصفحة */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* حاوية الفيديو */
+        .video-container {
+          width: 100%;
+          height: 100%;
+          overflow: hidden; /* أخفِ أي شيء خارج الحاوية */
+          border-radius: 20px; /* اجعل الفيديو مستدير الحواف ليناسب الإطار */
+        }
+
+        /* الفيديو نفسه */
+        .video-container video {
+          width: 100%; /* عرض كامل للحاوية */
+          height: 100%; /* ارتفاع كامل للحاوية */
+          object-fit: cover; /* يجعل الفيديو يغطي الحاوية بالكامل */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- السهم في الجهة اليسرى من شريط التنقل -->
+        <span class="back-arrow" onclick="changeArrowColor()">←</span>
+        <h1>مشروع حافظ مؤتة</h1>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="achievements.html">إنجازات</a>
+            <a href="events.html">الفعاليات</a>
+            <a href="communication.html">تواصل معنا</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- قسم الترحيب -->
+        <section id="welcome">
+            <h2>مرحبًا بكم في مشروع حافظ مؤتة</h2>
+            <center><p>هو مشروع ابتدأ بمساعٍ طلابية مباركة من كلية الطب في جامعة مؤتة  عام 2018  وهو احد مشاريع حفظ القرآن الكريم كاملاً ومراجعته وفهمه وتدبره وتعلم تلاوته وترتيله </p></center>
+            <center>
+                <video controls width="600" loop muted poster="image/hafez.jpg">
+                    <source src="video/hafez.mp4" type="video/mp4" size="auto size">
+                </video>
+            </center>
+        </section>
+
+        <!-- قسم الأهداف -->
+        <section id="goals">
+            <h2>برامج المشروع </h2>
+            <ul>
+                <li><h4>برامج ميسرة :لغير الحفاظ </h4></li>
+                <li><h4>برامج مكثفة : لحفظةِ كتاب الله كاملاً</h4></li>
+            </ul>
+        </section>
+
+        <!-- قسم الإنجازات -->
+        <section id="achievements">
+            <h2>إنجازاتنا</h2>
+            <p> :استحدث المشروع
+                <ul><li><h4>:فريقاً تربوياً</h4></li></ul>  
+                تم استحداثه جديداً,لغرس القيم والاخلاق وبناء علاقات قريبة من طلبة المشروع
+            </p>
+            <ul><li><h4>:إقامة نشاط لسرد القرآن الكريم</h4></li></ul>
+            <p>الذي يضم المجتمع المحلي على خطى اهل العزة</p>
+
+            <ul><li><h4>:فريقاً خاصاً للتجويد </h4></li></ul>
+            تم استحداثه جديداً, يعنى بعقد الدورات ومجالس التلاوة تيسيراً على طلبة الجامعة ان يضبطوا لفظ القرآن الكريم
+
+            <ul><li><h4>:مساعدة طلاب الطب دراسياً</h4></li></ul>
+            دعم منصة لاميديكا لطلبة المشروع (منصة تقدم خصومات لطلبة الطب بشرح كورسات وبعض الدروس)  
+
+            <a href="achievements.html" class="button">تعرف على المزيد</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 مشروع حافظ مؤتة</p>
+    </footer>
+   
+</body>
+</html>
+

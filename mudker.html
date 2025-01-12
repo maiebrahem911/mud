@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنجازات المشروع</title>
+    <!-- إضافة مكتبة Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* تنسيقات الصفحة */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .achievements {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .achievement {
+            margin: 10px;
+        }
+
+        .achievement h2 {
+            font-size: 3rem;
+            color: #4caf50;
+        }
+
+        .achievement p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        canvas {
+            margin: 20px 0;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>إنجازات المشروع بالأرقام</h1>
+        
+        <!-- قسم العد التفاعلي الأول -->
+        <div class="achievements">
+            <div class="achievement">
+                <h2 id="students-count">0</h2>
+                <p>عدد الطلاب</p>
+            </div>
+            <div class="achievement">
+                <h2 id="admins-count">0</h2>
+                <p>عدد المسؤولين</p>
+            </div>
+            <div class="achievement">
+                <h2 id="supervisors-count">0</h2>
+                <p>عدد المشرفين</p>
+            </div>
+        </div>
+
+        <!-- الرسم البياني الأول -->
+        <canvas id="achievementChart"></canvas>
+
+        <!-- عنوان الإحصائية الثانية -->
+        <h1>إحصائيات حفظ القرآن الكريم</h1>
+
+        <!-- قسم العد التفاعلي الثاني -->
+        <div class="achievements">
+            <div class="achievement">
+                <h2 id="less-than-5-count">0</h2>
+                <p>أقل من 5 أجزاء</p>
+            </div>
+            <div class="achievement">
+                <h2 id="ten-parts-count">0</h2>
+                <p>10 أجزاء</p>
+            </div>
+            <div class="achievement">
+                <h2 id="half-quran-count">0</h2>
+                <p>نصف القرآن</p>
+            </div>
+            <div class="achievement">
+                <h2 id="twenty-parts-count">0</h2>
+                <p>20 جزء</p>
+            </div>
+            <div class="achievement">
+                <h2 id="full-quran-count">0</h2>
+                <p>حفظ القرآن كاملاً</p>
+            </div>
+        </div>
+
+        <!-- الرسم البياني الثاني -->
+        <canvas id="quranChart"></canvas>
+    </div>
+
+    <script>
+        // البيانات للإحصائية الأولى
+        const data1 = {
+            students: 540,      // عدد الطلاب
+            admins: 223,        // عدد المسؤولين
+            supervisors: 28     // عدد المشرفين
+        };
+
+        // البيانات للإحصائية الثانية
+        const data2 = {
+            lessThan5: 302,     // أقل من 5 أجزاء
+            tenParts: 38,       // 10 أجزاء
+            halfQuran: 31,      // نصف القرآن
+            twentyParts: 16,    // 20 جزء
+            fullQuran: 19       // حفظ القرآن كاملاً
+        };
+
+        // وظيفة العد التفاعلي
+        function animateCount(id, targetNumber, duration) {
+            const element = document.getElementById(id);
+            let start = 0;
+            const increment = targetNumber / (duration / 16); // سرعة العد
+            const counter = setInterval(() => {
+                start += increment;
+                if (start >= targetNumber) {
+                    element.textContent = targetNumber;
+                    clearInterval(counter);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // تشغيل العد التفاعلي للإحصائية الأولى
+        animateCount("students-count", data1.students, 2000); // مدة العد: 2 ثانية
+        animateCount("admins-count", data1.admins, 2000);
+        animateCount("supervisors-count", data1.supervisors, 2000);
+
+        // تشغيل العد التفاعلي للإحصائية الثانية
+        animateCount("less-than-5-count", data2.lessThan5, 2000);
+        animateCount("ten-parts-count", data2.tenParts, 2000);
+        animateCount("half-quran-count", data2.halfQuran, 2000);
+        animateCount("twenty-parts-count", data2.twentyParts, 2000);
+        animateCount("full-quran-count", data2.fullQuran, 2000);
+
+        // إعداد الرسم البياني للإحصائية الأولى باستخدام Chart.js
+        const ctx1 = document.getElementById('achievementChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['عدد الطلاب', 'عدد المسؤولين', 'عدد المشرفين'],
+                datasets: [{
+                    label: 'إحصائيات المشروع',
+                    data: [data1.students, data1.admins, data1.supervisors],
+                    backgroundColor: ['#4caf50', '#2196f3', '#ff9800'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                }
+            }
+        });
+
+        // إعداد الرسم البياني للإحصائية الثانية باستخدام Chart.js
+        const ctx2 = document.getElementById('quranChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['أقل من 5 أجزاء', '10 أجزاء', 'نصف القرآن', '20 جزء', 'حفظ القرآن كاملاً'],
+                datasets: [{
+                    label: 'إحصائيات حفظ القرآن الكريم',
+                    data: [data2.lessThan5, data2.tenParts, data2.halfQuran, data2.twentyParts, data2.fullQuran],
+                    backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#ff5722', '#9c27b0'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                }
+            }
+        });
+    </script>
+</body>
+</html>
