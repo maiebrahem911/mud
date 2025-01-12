@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع حافظ مؤتة</title>
+    <link rel="icon" href="images.jpg" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#004d40">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #ece511;
+        }
+
+        header {
+            background-color: #746705;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header img {
+            border-radius: 10px;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        /* السهم في الجهة اليسار */
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: black;
+            font-size: 2rem;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            color: yellow; /* تغيير اللون إلى الأصفر عند المرور */
+        }
+
+        nav a {
+            color: rgb(239, 244, 244);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        img {
+            margin-top: 10px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .achievements {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .achievement {
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .achievement h2 {
+            font-size: 2.5rem;
+            color: #4caf50;
+        }
+
+        .achievement p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        canvas {
+            margin: 20px 0;
+            max-width: 100%;
+        }
+
+        .images-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-card {
+            flex: 1 1 calc(33.33% - 20px);
+            max-width: 300px;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .image-card {
+                flex: 1 1 100%;
+            }
+
+            .achievement h2 {
+                font-size: 2rem;
+            }
+
+            .achievement p {
+                font-size: 1rem;
+            }
+        }
+
+        .awards-container {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .awards-container ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .awards-container ul li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #fff;
+            border-left: 5px solid #4caf50;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 30px;
+        }
+
+        a {
+            font-size: 16px;
+            padding: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- السهم في الجهة اليسار -->
+        <a href="javascript:history.back()" class="back-button">&larr;</a>
+        <h1>مشروع حافظ مؤتة</h1>
+        <nav>
+            <a href="haf.html">الرئيسية</a>
+            <a href="achievements.html">إنجازات</a>
+            <a href="events.html">الفعاليات</a>
+            <a href="communication.html">تواصل معنا</a>
+        </nav>
+    </header>
+    <main>
+        <section id="overview">
+            <h2>اهم إنجازاته</h2>
+            <p>أن يعدَ طبيباً حافظاً لكتاب الله في صدره وسماعته على كتفه، متخلقاً بأخلاق القرآن ناشراً لها في مجتمعه ومحيطه.</p>
+        </section>
+
+        <section id="achievements">
+            <h2>إحصائيات المشروع</h2>
+            <div class="achievements">
+                <div class="achievement">
+                    <h2 id="students-count">0</h2>
+                    <p>عدد الطلاب</p>
+                </div>
+                <div class="achievement">
+                    <h2 id="admins-count">0</h2>
+                    <p>عدد المسؤولين</p>
+                </div>
+                <div class="achievement">
+                    <h2 id="supervisors-count">0</h2>
+                    <p>عدد المشرفين</p>
+                </div>
+            </div>
+            <canvas id="achievementChart"></canvas>
+        </section>
+
+        <section id="quran">
+            <h2>إحصائيات حفظ القرآن الكريم</h2>
+            <div class="achievements">
+                <div class="achievement">
+                    <h2 id="less-than-5-count">0</h2>
+                    <p>حفظ أقل من 5 أجزاء</p>
+                </div>
+                <div class="achievement">
+                    <h2 id="ten-parts-count">0</h2>
+                    <p>حفظ 10 أجزاء</p>
+                </div>
+                <div class="achievement">
+                    <h2 id="half-quran-count">0</h2>
+                    <p>حفظ نصف القرآن</p>
+                </div>
+                <div class="achievement">
+                    <h2 id="twenty-parts-count">0</h2>
+                    <p>حفظ 20 جزءاً</p>
+                </div>
+                <div class="achievement">
+                    <h2 id="full-quran-count">0</h2>
+                    <p>حفظ القرآن كاملاً</p>
+                </div>
+            </div>
+            <canvas id="quranChart"></canvas>
+        </section>
+
+        <section id="images">
+            <h2>صور مميزة</h2>
+            <div class="images-gallery">
+                <div class="image-card">
+                    <img src="image/FB_IMG_1734986227829.jpg" alt="حفظة القرآن">
+                </div>
+                <div class="image-card">
+                    <img src="image/FB_IMG_1734989398723.jpg" alt="تكريم الحفظة">
+                </div>
+                <div class="image-card">
+                    <img src="image/FB_IMG_1736424174322.jpg" alt="مسابقة المشروع">
+                </div>
+                <div class="image-card">
+                    <img src="image/FB_IMG_1736424168607.jpg" alt="مسابقة المشروع">
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="awards-container">
+            <h2>الجوائز والتكريمات</h2>
+            <ul>
+                <li>تكريم المشرفين والمشرفات على المشروع</li>
+                <li>عمرة كاملة لخاتمين القرآن الكريم كاملاً</li>
+                <li>تكريم الطلبة الذين أتموا نصف القرآن الكريم</li>
+                <li>مسابقة سنوية للمشروع يتم فيها تكريم الطلبة الذين شاركوا فيها</li>
+                <li>مسابقات دورية</li>
+                <li>تكريم سنوي إلكتروني</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 مشروع حافظ مؤتة. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const data1 = { students: 540, admins: 223, supervisors: 28 };
+        const data2 = {
+            lessThan5: 302,
+            tenParts: 38,
+            halfQuran: 31,
+            twentyParts: 16,
+            fullQuran: 19
+        }
+
+        // وظيفة العد التفاعلي
+        function animateCount(id, targetNumber, duration) {
+            const element = document.getElementById(id);
+            let start = 0;
+            const increment = targetNumber / (duration / 16);
+            const counter = setInterval(() => {
+                start += increment;
+                if (start >= targetNumber) {
+                    element.textContent = targetNumber;
+                    clearInterval(counter);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // تشغيل العد التفاعلي للإحصائية الأولى
+        animateCount("students-count", data1.students, 2000);
+        animateCount("admins-count", data1.admins, 2000);
+        animateCount("supervisors-count", data1.supervisors, 2000);
+
+        // تشغيل العد التفاعلي للإحصائية الثانية
+        animateCount("less-than-5-count", data2.lessThan5, 2000);
+        animateCount("ten-parts-count", data2.tenParts, 2000);
+        animateCount("half-quran-count", data2.halfQuran, 2000);
+        animateCount("twenty-parts-count", data2.twentyParts, 2000);
+        animateCount("full-quran-count", data2.fullQuran, 2000);
+
+        // إعداد الرسم البياني للإحصائية الأولى
+        const ctx1 = document.getElementById('achievementChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['عدد الطلاب', 'عدد المسؤولين', 'عدد المشرفين'],
+                datasets: [{
+                    label: 'إحصائيات المشروع',
+                    data: [data1.students, data1.admins, data1.supervisors],
+                    backgroundColor: ['#4caf50', '#2196f3', '#ff9800']
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+
+        // إعداد الرسم البياني للإحصائية الثانية
+        const ctx2 = document.getElementById('quranChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['أقل من 5 أجزاء', '10 أجزاء', 'نصف القرآن', '20 جزء', 'حفظ القرآن كاملاً'],
+                datasets: [{
+                    label: 'إحصائيات حفظ القرآن الكريم',
+                    data: [data2.lessThan5, data2.tenParts, data2.halfQuran, data2.twentyParts, data2.fullQuran],
+                    backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#ff5722', '#9c27b0']
+                }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+    </script>
+
+</

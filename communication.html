@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #b49605;
+      color: #fff;
+      padding: 20px 0;
+      animation: slideInDown 1s ease-out;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.2em;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 40px 0;
+    }
+
+    .social-link {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s, color 0.3s;
+      opacity: 0;
+      animation: slideInUp 0.5s ease-out forwards;
+    }
+
+    .social-link:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+
+    .social-link:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+
+    .social-link:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    .social-link img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.5rem;
+    }
+
+    .social-link span {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .social-link.instagram:hover {
+      color: #E1306C;
+      transform: scale(1.1);
+    }
+
+    .social-link.facebook:hover {
+      color: #3b5998;
+      transform: scale(1.1);
+    }
+
+    .social-link.telegram:hover {
+      color: #0088cc;
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      animation: slideInUp 1s ease-out;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9em;
+    }
+
+    /* Animations */
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تواصل معنا</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>تواصل معنا</h1>
+    <p>نحن هنا لمساعدتك</p>
+  </header>
+
+  <section id="contact-section">
+    <div class="social-links">
+      <a href="https://www.facebook.com/profile.php?id=100028672190612&mibextid=ZbWKwL" target="_blank" class="social-link facebook">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="فيسبوك">
+        <span>تواصل معنا على الفيسبوك</span>
+      </a>
+      <a href="https://www.instagram.com/hafez_mutah?igsh=MXQ2YWtzZWRsMWloZg==" target="_blank" class="social-link instagram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="إنستغرام">
+        <span>تابعنا على الإنستغرام</span>
+      </a>
+      <a href="https://t.me/hafezmutah" target="_blank" class="social-link telegram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="تيليجرام">
+        <span>انضم إلى قناتنا على التليجرام</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>جميع الحقوق محفوظة &copy; 2025</p>
+  </footer>
+</body>
+</html>
